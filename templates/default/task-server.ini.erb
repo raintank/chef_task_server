@@ -1,0 +1,10 @@
+log-level = <%= node[:chef_task_server]['log_level'] %>
+addr = <%= node[:chef_task_server]['addr'] %>
+db-type = mysql
+db-connect-str = <%= node[:chef_task_server]['db_user'] %>:<%= node[:chef_task_server]['db_password'] %>@tcp(<%= node[:chef_task_server]['db_host'] %>:<%= node[:chef_task_server]['db_port'] %>)/<%= node[:chef_task_server]['db_name'] %>?charset=utf8
+stats-enabled = <%= node[:chef_task_server]['stats_enabled'] %>
+statsd-addr = <%= node[:chef_task_server]['statsd_addr'] %>
+statsd-type = <%= node[:chef_task_server]['statsd_type'] %>
+admin-key = <%= node[:chef_task_server]['admin_key'] %>
+exchange = <%= node[:chef_task_server]['exchange'] %>
+rabbitmq-url = <%= node[:chef_task_server]['rabbitmq_url'] %>
