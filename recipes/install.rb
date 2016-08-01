@@ -27,12 +27,28 @@ service "task-server" do
   action [ :enable, :start]
 end
 
+haproxy_addr = find_haproxy
+db_host = unless haproxy_addr.nil?
+	    haproxy_addr
+	  else
+	    node['chef_task_server']['db_host']
+	  end
+rabbitmq_url = unless haproxy_addr.nil?
+	    "amqp://guest:guest@#{haproxy_addr}:5672/"
+	  else
+	    node['chef_task_server']['rabbitmq_url']
+	  end
+
 template "/etc/raintank/task-server.ini" do
   source 'task-server.ini.erb'
   mode '0644'
   owner 'root'
   group 'root'
   action :create
+  variables({
+    db_host: db_host,
+    rabbitmq_url: rabbitmq_url
+  })
   # notifies ....
   notifies :restart, 'service[task-server]', :delayed
 end
