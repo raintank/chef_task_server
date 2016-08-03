@@ -12,4 +12,5 @@ default[:chef_task_server]['admin_key'] = "changeme"
 default[:chef_task_server]['exchange'] = "events"
 default[:chef_task_server]['rabbitmq_url'] = "amqp://guest:guest@localhost:5672/"
 default[:chef_task_server]['domain'] = "localhost"
+default[:chef_task_server]['aliases'] = []
 default[:chef_task_server]['backend'] = "localhost:8082"
